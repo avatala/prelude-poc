@@ -4,7 +4,7 @@
 resource "google_compute_disk" "app-disk" {
   name                      = "app-server-prelude-disk"
   type                      = "pd-ssd"
-  size                      = 50
+  size                      = 70
   physical_block_size_bytes = 4096
 }
 
