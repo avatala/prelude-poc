@@ -4,7 +4,7 @@ resource "google_compute_network" "vpc_network" {
   name                    = var.vpc_network
   auto_create_subnetworks = false
   routing_mode            = "GLOBAL"
-  description             = "prelude infrastructure VPC network" 
+  description             = "prelude infrastructure VPC network"
 }
 
 # Add a subnet to the vpc network

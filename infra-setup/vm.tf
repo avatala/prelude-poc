@@ -10,7 +10,7 @@ resource "google_compute_address" "app-ip-add" {
 
 
 locals {
-  service_account = "806031125646-compute@developer.gserviceaccount.com"
+  service_account = "1067081160439-compute@developer.gserviceaccount.com"
 }
 
 # Bastion-server machine creation
@@ -22,7 +22,7 @@ resource "google_compute_instance" "bastion-server" {
   tags         = ["bastion-i-allow", "bastion-e-allow-smtp"]
   boot_disk {
     initialize_params {
-      image = "windows-cloud/windows-server-2019-dc-v20220119"
+      image = "debian-cloud/debian-10"
     }
   }
   network_interface {
@@ -43,11 +43,11 @@ resource "google_compute_instance" "bastion-server" {
 resource "google_compute_instance" "app-server" {
   name         = "app-server-prelude"
   description  = "Windows Server 2019 Datacenter"
-  machine_type = "n2-standard-2"
+  machine_type = "n1-standard-1"
   tags         = ["bastion-i-internal-allow", "app-e-allow-smtp"]
   boot_disk {
     initialize_params {
-      image = "windows-cloud/windows-server-2019-dc-v20220119"
+      image = "debian-cloud/debian-10"
     }
   }
   network_interface {
@@ -71,11 +71,11 @@ resource "google_compute_instance" "app-server" {
 resource "google_compute_instance" "sql-server" {
   name         = "sql-server-prelude"
   description  = "SQL Server 2019 Standard on Windows Server 2019 Datacenter"
-  machine_type = "n2-standard-4"
+  machine_type = "n1-standard-1"
   tags         = ["sql-i-allow"]
   boot_disk {
     initialize_params {
-      image = "windows-sql-cloud/sql-2019-standard-windows-2019-dc-v20220119"
+      image = "debian-cloud/debian-10"
     }
   }
   network_interface {

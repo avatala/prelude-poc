@@ -1,6 +1,6 @@
 variable "project" {
   type        = string
-  default     = "iac-mgmt"
+  default     = "silver-lead-358507"
   description = "Enter the project ID, in which resources are provisioned"
 }
 

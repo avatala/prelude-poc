@@ -2,7 +2,7 @@
 
 terraform {
   backend "gcs" {
-    bucket = "prelude-poc-bucket"
+    bucket = "prelude-solution-provider-bucket"
     prefix = "terraform-state"
   }
 }
