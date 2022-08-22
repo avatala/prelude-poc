@@ -48,31 +48,31 @@ resource "google_compute_firewall" "internal-sql" {
   name    = "sql-internal-ingress"
   network = google_compute_network.vpc_network.name
   allow {
-    protocol = "icmp" 
+    protocol = "icmp"
   }
 
   allow {
     protocol = "tcp"
     ports    = ["3389", "1433"]
   }
-  source_ranges = [google_compute_subnetwork.subnet.ip_cidr_range,"35.226.130.118"]
+  source_ranges = [google_compute_subnetwork.subnet.ip_cidr_range, "35.226.130.118"]
   target_tags   = ["sql-i-allow"]
 }
 
 # SMTP allow Egress rule
 
 resource "google_compute_firewall" "smtp" {
-  name    = "smtp-external-egress"
-  network = google_compute_network.vpc_network.name
+  name      = "smtp-external-egress"
+  network   = google_compute_network.vpc_network.name
   direction = "EGRESS"
-  
+
   allow {
     protocol = "tcp"
     ports    = ["587"]
   }
-  
+
   destination_ranges = ["0.0.0.0/0"]
-  target_tags = [ "bastion-e-allow-smtp", "app-e-allow-smtp" ]
+  target_tags        = ["bastion-e-allow-smtp", "app-e-allow-smtp"]
 
 }
 
@@ -83,16 +83,16 @@ resource "google_compute_firewall" "imap" {
   network = google_compute_network.vpc_network.name
 
   allow {
-    protocol = "icmp"  
+    protocol = "icmp"
   }
   allow {
     protocol = "tcp"
-    ports    = ["993","995"]
+    ports    = ["993", "995"]
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["bastion-i-internal-allow", "bastion-i-allow"]
-  
+  target_tags   = ["bastion-i-internal-allow", "bastion-i-allow"]
+
 }
 
 
